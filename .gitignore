@@ -1,0 +1,7 @@
+# Ignore the dataset directory
+Self-Driving-Car-3/
+
+# Ignore virtual environment files
+.venv/
+
+.env
