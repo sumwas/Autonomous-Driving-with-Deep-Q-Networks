@@ -4,7 +4,9 @@ import torch
 from dqn_agent import DQNAgent
 
 def run():
-    env = gym.make('CartPole-v1')
+    # Create the environment with render mode enabled
+    env = gym.make('CartPole-v1', render_mode='human')
+    
     state_dim = env.observation_space.shape[0]
     action_dim = env.action_space.n
 
@@ -19,9 +21,16 @@ def run():
         total_reward = 0
 
         while not done:
-            env.render()
+            env.render()  # Render the current state of the environment
             action = agent.act(state)
-            next_state, reward, done, _ = env.step(action)
+            result = env.step(action)
+            
+            if len(result) == 4:
+                next_state, reward, done, _ = result
+            elif len(result) == 5:
+                next_state, reward, done, truncated, _ = result
+                done = done or truncated  # Consider the episode done if truncated
+            
             state = next_state
             total_reward += reward
 
