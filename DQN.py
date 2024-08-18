@@ -16,5 +16,5 @@ def build_dqn(input_shape, num_actions):
 
 
 input_shape = (96, 96, 1)
-num_actions = 3  # Example: [left, straight, right]
+num_actions = 3 # Example: [stop, go]
 dqn_model = build_dqn(input_shape, num_actions)
